@@ -7,12 +7,8 @@ pub fn git_branch(cwd: &str) -> Option<String> {
         .output()
         .ok()?;
     if output.status.success() {
-        let branch = String::from_utf8_lossy(&output.stdout).trim().to_string();
-        if branch.is_empty() {
-            None
-        } else {
-            Some(branch)
-        }
+        let s = String::from_utf8_lossy(&output.stdout).trim().to_string();
+        if s.is_empty() { None } else { Some(s) }
     } else {
         None
     }
